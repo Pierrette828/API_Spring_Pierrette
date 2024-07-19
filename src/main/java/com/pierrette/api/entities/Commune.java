@@ -28,7 +28,4 @@ public class Commune {
     @ManyToMany(mappedBy = "communes")
     private Set<Taxe> taxes= new HashSet<>();
 
-    public void setIdCommune(Integer idCommune) {
-        this.idCommune=idCommune;
-    }
 }

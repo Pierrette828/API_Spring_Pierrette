@@ -32,7 +32,7 @@ public class PrefectureController {
 
     @PutMapping("/{id}")
     public Prefecture updatePrefecture(@PathVariable Integer id, @RequestBody Prefecture prefecture) {
-        prefecture.setIdPrefecture(id);
+       // prefecture.setIdPrefecture(id);
         return prefectureService.save(prefecture);
     }
 

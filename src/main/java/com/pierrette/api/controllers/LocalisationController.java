@@ -32,7 +32,7 @@ public class LocalisationController {
 
     @PutMapping("/{id}")
     public Localisation updateLocalisation(@PathVariable Integer id, @RequestBody Localisation localisation) {
-        localisation.setIdLocalisation(id);
+       // localisation.setIdLocalisation(id);
         return localisationService.save(localisation);
     }
 

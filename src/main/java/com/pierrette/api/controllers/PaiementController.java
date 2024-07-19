@@ -32,7 +32,7 @@ public class PaiementController {
 
     @PutMapping("/{id}")
     public Paiement updatePaiement(@PathVariable Integer id, @RequestBody Paiement paiement) {
-        paiement.setIdPaiement(id);
+      //  paiement.setIdPaiement(id);
         return paiementService.save(paiement);
     }
 

@@ -10,8 +10,11 @@ import java.util.Optional;
 @Service
 public class CommuneService {
 
-    @Autowired
-    private CommuneRepo communeRepository;
+    private final CommuneRepo communeRepository;
+
+    public CommuneService(CommuneRepo communeRepository) {
+        this.communeRepository = communeRepository;
+    }
 
     public List<Commune> findAll() {
         return communeRepository.findAll();

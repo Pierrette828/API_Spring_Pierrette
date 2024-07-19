@@ -32,7 +32,7 @@ public class TaxeController {
 
     @PutMapping("/{id}")
     public Taxe updateTaxe(@PathVariable Integer id, @RequestBody Taxe taxe) {
-        taxe.setIdTaxe(id);
+      //  taxe.setIdTaxe(id);
         return taxeService.save(taxe);
     }
 

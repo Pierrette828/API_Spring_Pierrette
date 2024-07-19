@@ -32,7 +32,7 @@ public class VilleController {
 
     @PutMapping("/{id}")
     public Ville updateVille(@PathVariable Integer id, @RequestBody Ville ville) {
-        ville.setIdVille(id);
+       // ville.setIdVille(id);
         return villeService.save(ville);
     }
 

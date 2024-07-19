@@ -32,7 +32,7 @@ public class TerminalController {
 
     @PutMapping("/{id}")
     public Terminal updateTerminal(@PathVariable Integer id, @RequestBody Terminal terminal) {
-        terminal.setIdType(id);
+     //   terminal.setIdType(id);
         return terminalService.save(terminal);
     }
 
