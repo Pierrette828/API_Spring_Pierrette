@@ -20,23 +20,23 @@ public class OperateurController {
         return operateurService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idOperateur}")
     public Optional<Operateur> getOperateurById(@PathVariable Integer id) {
         return operateurService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public Operateur createOperateur(@RequestBody Operateur operateur) {
         return operateurService.save(operateur);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{idOperateur}")
     public Operateur updateOperateur(@PathVariable Integer id, @RequestBody Operateur operateur) {
         operateur.setIdOperateur(id);
         return operateurService.save(operateur);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{idOperateur}")
     public void deleteOperateur(@PathVariable Integer id) {
         operateurService.deleteById(id);
     }

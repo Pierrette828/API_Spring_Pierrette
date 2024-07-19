@@ -20,7 +20,7 @@ public class CommuneController {
         return communeService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{idOperateur}")
     public Optional<Commune> getCommuneById(@PathVariable Integer id) {
         return communeService.findById(id);
     }

@@ -24,6 +24,7 @@ public class Operateur {
     private Integer telephone;
     private String sexe;
     private String password;
+    @Column(nullable = true)
     private Byte piece_identite;
 
     @ManyToOne
