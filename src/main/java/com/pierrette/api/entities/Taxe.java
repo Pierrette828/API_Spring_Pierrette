@@ -43,7 +43,4 @@ public class Taxe {
     )
     private Set<Paiement> paiements1 = new HashSet<>();
 
-    public void setIdTaxe(Integer idTaxe) {
-        this.idTaxe=idTaxe;
-    }
 }

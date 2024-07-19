@@ -32,7 +32,7 @@ public class CommuneController {
 
     @PutMapping("/{id}")
     public Commune updateCommune(@PathVariable Integer id, @RequestBody Commune commune) {
-        commune.setIdCommune(id);
+        //commune.setIdCommune(id);
         return communeService.save(commune);
     }
 

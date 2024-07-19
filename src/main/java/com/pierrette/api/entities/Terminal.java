@@ -31,8 +31,5 @@ public class Terminal {
     @OneToOne(mappedBy = "terminal")
     private Operateur operateur;
 
-    public void setIdType(Integer idTpe) {
-        this.idTpe=idTpe;
 
-    }
 }

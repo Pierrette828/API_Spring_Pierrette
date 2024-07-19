@@ -37,8 +37,4 @@ public class Operateur {
     @OneToOne
     @JoinColumn(name = "idTerminal")
     private Terminal terminal;
-
-    public void setIdOperateur(Integer idOperateur) {
-        this.idOperateur=idOperateur;
-    }
 }

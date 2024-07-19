@@ -32,7 +32,7 @@ public class OperateurController {
 
     @PutMapping("/{idOperateur}")
     public Operateur updateOperateur(@PathVariable Integer id, @RequestBody Operateur operateur) {
-        operateur.setIdOperateur(id);
+       // operateur.setIdOperateur(id);
         return operateurService.save(operateur);
     }
 

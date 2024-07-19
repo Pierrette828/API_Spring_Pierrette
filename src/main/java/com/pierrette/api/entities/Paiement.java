@@ -34,9 +34,6 @@ public class Paiement {
     @ManyToMany(mappedBy = "paiements1")
     private Set<Taxe> taxes = new HashSet<>();
 
-    public void setIdPaiement(Integer idPaiement) {
-        this.idPaiement= idPaiement;
-    }
 
 }
 

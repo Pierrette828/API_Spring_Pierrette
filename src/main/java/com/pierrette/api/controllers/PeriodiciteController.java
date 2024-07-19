@@ -32,7 +32,7 @@ public class PeriodiciteController {
 
     @PutMapping("/{id}")
     public Periodicite updatePeriodicite(@PathVariable Integer id, @RequestBody Periodicite periodicite) {
-        periodicite.setIdValidite(id);
+      //  periodicite.setIdValidite(id);
         return periodiciteService.save(periodicite);
     }
 

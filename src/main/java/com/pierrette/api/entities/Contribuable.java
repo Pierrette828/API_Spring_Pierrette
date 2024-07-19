@@ -31,7 +31,5 @@ public class Contribuable {
     )
     private Set<Taxe> taxes=new HashSet<>();
 
-    public void setIdContribuable(Integer idContribuable) {
-        this.idContribuable=idContribuable;
-    }
+
 }

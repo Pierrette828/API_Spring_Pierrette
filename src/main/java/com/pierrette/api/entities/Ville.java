@@ -23,7 +23,4 @@ public class Ville {
     @OneToMany(mappedBy ="ville")
     private List<Prefecture> prefectures;
 
-    public void setIdVille(Integer idVille) {
-        this.idVille=idVille;
-    }
 }
