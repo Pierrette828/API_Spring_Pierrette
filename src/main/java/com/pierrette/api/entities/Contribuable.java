@@ -30,4 +30,8 @@ public class Contribuable {
             inverseJoinColumns = @JoinColumn(name = "idTaxe")
     )
     private Set<Taxe> taxes=new HashSet<>();
+
+    public void setIdContribuable(Integer idContribuable) {
+        this.idContribuable=idContribuable;
+    }
 }

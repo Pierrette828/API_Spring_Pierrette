@@ -27,4 +27,8 @@ public class Prefecture {
     @ManyToOne
     @JoinColumn(name = "idVille")
     private Ville ville;
+
+    public void setIdPrefecture(Integer idPrefecture) {
+        this.idPrefecture=idPrefecture;
+    }
 }

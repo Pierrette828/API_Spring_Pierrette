@@ -34,4 +34,16 @@ public class Taxe {
 
     @ManyToMany(mappedBy = "taxes")
     private Set<Paiement> paiements= new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "paiement_taxe",
+            joinColumns = @JoinColumn(name = "idTaxe"),
+            inverseJoinColumns = @JoinColumn(name = "idPaiement")
+    )
+    private Set<Paiement> paiements1 = new HashSet<>();
+
+    public void setIdTaxe(Integer idTaxe) {
+        this.idTaxe=idTaxe;
+    }
 }

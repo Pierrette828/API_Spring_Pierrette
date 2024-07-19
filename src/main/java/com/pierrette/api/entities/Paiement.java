@@ -31,12 +31,12 @@ public class Paiement {
     @JoinColumn(name = "idPeriodicite")
     private Periodicite periodicite;
 
-    @ManyToMany
-    @JoinTable(
-    name = "paiement_taxe",
-    joinColumns = @JoinColumn(name = "idPaiement"),
-    inverseJoinColumns = @JoinColumn(name = "idTaxe")
-    )
+    @ManyToMany(mappedBy = "paiements1")
     private Set<Taxe> taxes = new HashSet<>();
 
+    public void setIdPaiement(Integer idPaiement) {
+        this.idPaiement= idPaiement;
+    }
+
 }
+

@@ -25,4 +25,9 @@ public class Type_operateur {
 
     @OneToMany(mappedBy ="typeOperateur")
     private List<Operateur> operateurs;
+
+
+    public void setIdTypeOperateur(Integer idType_operateur) {
+        this.idType_operateur=idType_operateur;
+    }
 }

@@ -33,5 +33,11 @@ public class Operateur {
     @OneToMany(mappedBy = "operateur")
     private List<Paiement> paiements;
 
+    @OneToOne
+    @JoinColumn(name = "idTerminal")
+    private Terminal terminal;
 
+    public void setIdOperateur(Integer idOperateur) {
+        this.idOperateur=idOperateur;
+    }
 }
