@@ -24,7 +24,4 @@ public class Localisation {
     @ManyToMany(mappedBy = "localisations")
     private Set<Terminal> terminals = new HashSet<>();
 
-    public void setIdLocalisation(Integer idLocalisation) {
-        this.idLocalisation=idLocalisation;
-    }
 }

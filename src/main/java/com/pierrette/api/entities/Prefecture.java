@@ -28,7 +28,4 @@ public class Prefecture {
     @JoinColumn(name = "idVille")
     private Ville ville;
 
-    public void setIdPrefecture(Integer idPrefecture) {
-        this.idPrefecture=idPrefecture;
-    }
 }

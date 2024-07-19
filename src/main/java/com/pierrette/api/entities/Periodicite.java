@@ -25,7 +25,4 @@ public class Periodicite {
     private List<Paiement> paiements;
 
 
-    public void setIdValidite(Integer idValidite) {
-        this.idValidite=idValidite;
-    }
 }

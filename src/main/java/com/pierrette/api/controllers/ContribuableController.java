@@ -32,7 +32,7 @@ public class ContribuableController {
 
     @PutMapping("/{id}")
     public Contribuable updateContribuable(@PathVariable Integer id, @RequestBody Contribuable contribuable) {
-        contribuable.setIdContribuable(id);
+        //contribuable.setIdContribuable(id);
         return contribuableService.save(contribuable);
     }
 
