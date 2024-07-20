@@ -28,4 +28,24 @@ public class Commune {
     @ManyToMany(mappedBy = "communes")
     private Set<Taxe> taxes= new HashSet<>();
 
+
+    public void setLibelleCommune(String libelleCommune) {
+        this.libelleCommune = libelleCommune;
+    }
+
+    public void setLibellePrefecture(String libellePrefecture) {
+        this.libellePrefecture = libellePrefecture;
+    }
+
+    public String getLibelleCommune() {
+        return libelleCommune;
+    }
+
+    public String getLibellePrefecture() {
+        return libellePrefecture;
+    }
+
+    public void setPrefecture(Prefecture prefecture) {
+        this.prefecture = prefecture;
+    }
 }

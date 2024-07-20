@@ -1,8 +1,11 @@
 package com.pierrette.api.controllers;
 
+import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.entities.Prefecture;
+import com.pierrette.api.services.OperateurService;
 import com.pierrette.api.services.PrefectureService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,27 +20,28 @@ public class PrefectureController {
 
     @GetMapping
     public List<Prefecture> getAllPrefectures() {
-        return prefectureService.findAll();
+        return prefectureService.getAllPrefectures();
     }
 
-    @GetMapping("/{id}")
+   /* @GetMapping("/{idPrefecture}")
     public Optional<Prefecture> getPrefectureById(@PathVariable Integer id) {
-        return prefectureService.findById(id);
-    }
+        return PrefectureService.findById(id);
+    }*/
 
-    @PostMapping
+    @PostMapping("/create")
     public Prefecture createPrefecture(@RequestBody Prefecture prefecture) {
-        return prefectureService.save(prefecture);
+        return prefectureService.createPrefecture(prefecture);
     }
 
     @PutMapping("/{id}")
     public Prefecture updatePrefecture(@PathVariable Integer id, @RequestBody Prefecture prefecture) {
-       // prefecture.setIdPrefecture(id);
-        return prefectureService.save(prefecture);
+        // prefecture.setIdPrefecture(id);
+        return prefectureService.updatePrefecture(id,prefecture);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePrefecture(@PathVariable Integer id) {
-        prefectureService.deleteById(id);
+    public ResponseEntity<String> deletePrefecture(@PathVariable Integer id) {
+        prefectureService.deletePrefecture(id);
+        return ResponseEntity.ok("Prefecture avec l'ID "+id+" a été supprimé avec succès");
     }
 }

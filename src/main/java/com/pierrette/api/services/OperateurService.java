@@ -8,31 +8,41 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class OperateurService implements IOperateurService {
+public class OperateurService {
 
     @Autowired
     private OperateurRepo operateurRepository;
 
-    @Override
+
     public List<Operateur> getAllOperateurs(){
        return operateurRepository.findAll();
    }
-   @Override
+
     public Operateur createOperateur(Operateur operateur){
         return operateurRepository.save(operateur);
    }
 
-    @Override
-    public Operateur updateOperateur(Integer id) {
+    public Operateur updateOperateur(Integer id, Operateur operateurUpdate){
+        Operateur operateurExiste = operateurRepository.findById(id).orElse(null);
+        if (operateurExiste!=null){
+            operateurExiste.setNom(operateurUpdate.getNom());
+            operateurExiste.setPrenom(operateurUpdate.getPrenom());
+            operateurExiste.setTelephone(operateurUpdate.getTelephone());
+            operateurExiste.setSexe(operateurUpdate.getSexe());
+
+            Operateur operateurAjour = operateurRepository.save(operateurExiste);
+
+        } return operateurExiste;
+    }
+
+    public String deleteOperateur(Integer id) {
+        if(id!=0){
+            operateurRepository.deleteById(id);
+            return "Suppression";
+        }
         return null;
     }
 
-    @Override
-    public void deleteOperateur(Integer id) {
-
-    }
-
-    @Override
     public Operateur getOperateur(Integer idOperateur){
         return operateurRepository.findById(idOperateur).get();
    }

@@ -1,6 +1,8 @@
 package com.pierrette.api.services;
 
+import com.pierrette.api.entities.Prefecture;
 import com.pierrette.api.entities.Ville;
+import com.pierrette.api.repositories.PrefectureRepo;
 import com.pierrette.api.repositories.VilleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +15,31 @@ public class VilleService {
     @Autowired
     private VilleRepo villeRepository;
 
-    public List<Ville> findAll() {
+    public List<Ville> getAllVilles(){
         return villeRepository.findAll();
     }
 
-    public Optional<Ville> findById(Integer id) {
-        return villeRepository.findById(id);
-    }
-
-    public Ville save(Ville ville) {
+    public Ville createVille(Ville ville){
         return villeRepository.save(ville);
     }
 
-    public void deleteById(Integer id) {
-        villeRepository.deleteById(id);
+    public Ville updateVille(Integer id, Ville villeUpdate){
+        Ville villeExiste = villeRepository.findById(id).orElse(null);
+        if (villeExiste!=null){
+            villeExiste.setLibelleVille(villeUpdate.getLibelleVille());
+        } return villeExiste;
     }
-}
 
+    public String deleteVille(Integer id) {
+        if(id!=0){
+            villeRepository.deleteById(id);
+            return "Suppression";
+        }
+        return null;
+    }
+
+    public Ville getVille(Integer idVille){
+        return villeRepository.findById(idVille).get();
+    }
+
+}

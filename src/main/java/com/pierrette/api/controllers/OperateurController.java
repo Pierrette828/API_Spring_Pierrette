@@ -5,6 +5,7 @@ import com.pierrette.api.services.OperateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.http.ResponseEntity;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,27 +18,28 @@ public class OperateurController {
 
     @GetMapping
     public List<Operateur> getAllOperateurs() {
-        return operateurService.findAll();
+        return operateurService.getAllOperateurs();
     }
 
-    @GetMapping("/{idOperateur}")
+   /* @GetMapping("/{idOperateur}")
     public Optional<Operateur> getOperateurById(@PathVariable Integer id) {
         return operateurService.findById(id);
-    }
+    }*/
 
     @PostMapping("/create")
     public Operateur createOperateur(@RequestBody Operateur operateur) {
-        return operateurService.save(operateur);
+        return operateurService.createOperateur(operateur);
     }
 
-    @PutMapping("/{idOperateur}")
+    @PutMapping("/{id}")
     public Operateur updateOperateur(@PathVariable Integer id, @RequestBody Operateur operateur) {
        // operateur.setIdOperateur(id);
-        return operateurService.save(operateur);
+        return operateurService.updateOperateur(id,operateur);
     }
 
-    @DeleteMapping("/{idOperateur}")
-    public void deleteOperateur(@PathVariable Integer id) {
-        operateurService.deleteById(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteOperateur(@PathVariable Integer id) {
+        operateurService.deleteOperateur(id);
+        return ResponseEntity.ok("Operateur avec l'ID "+id+" a été supprimé avec succès");
     }
 }

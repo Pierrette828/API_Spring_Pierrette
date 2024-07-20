@@ -32,4 +32,11 @@ public class Terminal {
     private Operateur operateur;
 
 
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
 }

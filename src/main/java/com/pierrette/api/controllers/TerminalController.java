@@ -1,15 +1,18 @@
 package com.pierrette.api.controllers;
 
+import com.pierrette.api.entities.Taxe;
 import com.pierrette.api.entities.Terminal;
+import com.pierrette.api.services.TaxeService;
 import com.pierrette.api.services.TerminalService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/terminals")
+@RequestMapping("/api/terminal")
 public class TerminalController {
 
     @Autowired
@@ -17,28 +20,28 @@ public class TerminalController {
 
     @GetMapping
     public List<Terminal> getAllTerminals() {
-        return terminalService.findAll();
+        return terminalService.getAllTerminals();
     }
 
-    @GetMapping("/{id}")
+   /* @GetMapping("/{idTerminal}")
     public Optional<Terminal> getTerminalById(@PathVariable Integer id) {
         return terminalService.findById(id);
-    }
+    }*/
 
-    @PostMapping
+    @PostMapping("/create")
     public Terminal createTerminal(@RequestBody Terminal terminal) {
-        return terminalService.save(terminal);
+        return terminalService.createTerminal(terminal);
     }
 
     @PutMapping("/{id}")
     public Terminal updateTerminal(@PathVariable Integer id, @RequestBody Terminal terminal) {
-     //   terminal.setIdType(id);
-        return terminalService.save(terminal);
+        // terminal.setIdTerminal(id);
+        return terminalService.updateTerminal(id,terminal);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTerminal(@PathVariable Integer id) {
-        terminalService.deleteById(id);
+    public ResponseEntity<String> deleteTerminal(@PathVariable Integer id) {
+        terminalService.deleteTerminal(id);
+        return ResponseEntity.ok("terminal avec l'ID "+id+" a été supprimé avec succès");
     }
 }
-

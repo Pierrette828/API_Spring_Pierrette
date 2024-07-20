@@ -43,4 +43,11 @@ public class Taxe {
     )
     private Set<Paiement> paiements1 = new HashSet<>();
 
+    public String getLibelleTaxe() {
+        return libelleTaxe;
+    }
+
+    public void setLibelleTaxe(String libelleTaxe) {
+        this.libelleTaxe = libelleTaxe;
+    }
 }
