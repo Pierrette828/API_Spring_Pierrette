@@ -2,29 +2,30 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Localisation;
 import com.pierrette.api.services.LocalisationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/localisation")
 public class LocalisationController {
 
-    @Autowired
-    private LocalisationService localisationService;
+    private final LocalisationService localisationService;
+
+    public LocalisationController(LocalisationService localisationService) {
+        this.localisationService = localisationService;
+    }
 
     @GetMapping
     public List<Localisation> getAlllocalisations() {
         return localisationService.getAllLocalisations();
     }
 
-    /*@GetMapping("/{id}")
-    public Optional<Localisation> localisationById(@PathVariable Integer id) {
-        return localisationService.getAllLocalisations();
-    }*/
+    @GetMapping("/{id}")
+    public Localisation localisationById(@PathVariable Integer id) {
+        return localisationService.getLocalisation(id);
+    }
 
     @PostMapping("/create")
     public Localisation createLocalisation(@RequestBody Localisation localisation) {

@@ -2,28 +2,29 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Commune;
 import com.pierrette.api.services.CommuneService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/communes")
 public class CommuneController {
 
-    @Autowired
-    private CommuneService communeService;
+    private final CommuneService communeService;
+
+    public CommuneController(CommuneService communeService) {
+        this.communeService = communeService;
+    }
 
     @GetMapping("/list")
     public List<Commune> getAllCommunes() {
         return communeService.getAllCommunes();
     }
 
-    /*@GetMapping("/{id}")
-    public Optional<Commune> getCommuneById(@PathVariable Integer id) {
+    @GetMapping("/{id}")
+    public Commune getCommuneById(@PathVariable Integer id) {
         return communeService.getCommune(id);
-    }*/
+    }
 
     @PostMapping("/add")
     public Commune createCommune(@RequestBody Commune commune) {
@@ -32,8 +33,7 @@ public class CommuneController {
 
     @PutMapping("/{id}")
     public Commune updateCommune(@PathVariable Integer id, @RequestBody Commune commune) {
-        //commune.setIdCommune(id);
-        return communeService.updateCommune(id,commune);
+        return communeService.updateCommune(id, commune);
     }
 
     @DeleteMapping("/{id}")

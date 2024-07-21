@@ -2,7 +2,6 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.services.OperateurService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import java.util.Optional;
 @RequestMapping("/api/operateurs")
 public class OperateurController {
 
-    @Autowired
-    private OperateurService operateurService;
+    private final OperateurService operateurService;
+
+    public OperateurController(OperateurService operateurService) {
+        this.operateurService = operateurService;
+    }
 
     @GetMapping
     public List<Operateur> getAllOperateurs() {
@@ -23,7 +25,7 @@ public class OperateurController {
 
     @GetMapping("/{id}")
     public Optional<Operateur> getOperateurById(@PathVariable Integer id) {
-        return Optional.ofNullable(operateurService.getOperateur(id));
+        return operateurService.getOperateur(id);
     }
 
     @PostMapping
@@ -33,8 +35,8 @@ public class OperateurController {
 
     @PutMapping("/{id}")
     public Operateur updateOperateur(@PathVariable Integer id, @RequestBody Operateur operateur) {
-       // operateur.setIdOperateur(id);
-        return operateurService.createOperateur(operateur);
+
+        return operateurService.updateOperateur(id, operateur);
     }
 
     @DeleteMapping("/{id}")
