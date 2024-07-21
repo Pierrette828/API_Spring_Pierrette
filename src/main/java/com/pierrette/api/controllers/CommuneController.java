@@ -15,7 +15,7 @@ public class CommuneController {
     @Autowired
     private CommuneService communeService;
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Commune> getAllCommunes() {
         return communeService.findAll();
     }
@@ -25,7 +25,7 @@ public class CommuneController {
         return communeService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Commune createCommune(@RequestBody Commune commune) {
         return communeService.save(commune);
     }

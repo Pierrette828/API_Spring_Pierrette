@@ -3,6 +3,7 @@ package com.pierrette.api.controllers;
 import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.services.OperateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,7 +38,8 @@ public class OperateurController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOperateur(@PathVariable Integer id) {
+    public ResponseEntity<String> deleteOperateur(@PathVariable Integer id) {
         operateurService.deleteById(id);
+        return ResponseEntity.ok("Operateur deleted");
     }
 }
