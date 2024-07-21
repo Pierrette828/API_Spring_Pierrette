@@ -34,6 +34,36 @@ public class Paiement {
     @ManyToMany(mappedBy = "paiements1")
     private Set<Taxe> taxes = new HashSet<>();
 
+    public Periodicite getPeriodicite() {
+        return periodicite;
+    }
 
+    public void setPeriodicite(Periodicite periodicite) {
+        this.periodicite = periodicite;
+    }
+
+    public Operateur getOperateur() {
+        return operateur;
+    }
+
+    public void setOperateur(Operateur operateur) {
+        this.operateur = operateur;
+    }
+
+    public Integer getMontant() {
+        return montant;
+    }
+
+    public void setMontant(Integer montant) {
+        this.montant = montant;
+    }
+
+    public Date getDatePaiement() {
+        return datePaiement;
+    }
+
+    public void setDatePaiement(Date datePaiement) {
+        this.datePaiement = datePaiement;
+    }
 }
 

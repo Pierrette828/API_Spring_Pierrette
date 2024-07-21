@@ -28,4 +28,19 @@ public class Prefecture {
     @JoinColumn(name = "idVille")
     private Ville ville;
 
+    public String getLibellePrefecture() {
+        return libellePrefecture;
+    }
+
+    public void setLibellePrefecture(String libellePrefecture) {
+        this.libellePrefecture = libellePrefecture;
+    }
+
+    public String getLibelleVille() {
+        return libelleVille;
+    }
+
+    public void setLibelleVille(String libelleVille) {
+        this.libelleVille = libelleVille;
+    }
 }

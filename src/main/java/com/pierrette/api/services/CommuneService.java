@@ -5,31 +5,45 @@ import com.pierrette.api.repositories.CommuneRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CommuneService {
 
-    private final CommuneRepo communeRepository;
+    @Autowired
+    private CommuneRepo communeRepository;
 
-    public CommuneService(CommuneRepo communeRepository) {
-        this.communeRepository = communeRepository;
-    }
 
-    public List<Commune> findAll() {
+    public List<Commune> getAllCommunes(){
         return communeRepository.findAll();
     }
 
-    public Optional<Commune> findById(Integer id) {
-        return communeRepository.findById(id);
-    }
-
-    public Commune save(Commune commune) {
+    public Commune createCommune(Commune commune){
         return communeRepository.save(commune);
     }
 
-    public void deleteById(Integer id) {
-        communeRepository.deleteById(id);
+    public Commune updateCommune(Integer id, Commune communeUpdate){
+        Commune communeExiste = communeRepository.findById(id).orElse(null);
+        if (communeExiste!=null){
+            communeExiste.setLibelleCommune(communeUpdate.getLibelleCommune());
+            communeExiste.setLibellePrefecture(communeUpdate.getLibellePrefecture());
+
+            Commune communeAjour = communeRepository.save(communeExiste);
+
+        } return communeExiste;
     }
+
+    public String deleteCommune(Integer id) {
+        if(id!=0){
+            communeRepository.deleteById(id);
+            return "Suppression";
+        }
+        return null;
+    }
+
+    public Commune getCommune(Integer idCommune){
+        return communeRepository.findById(idCommune).get();
+    }
+
 }
+
 

@@ -17,28 +17,28 @@ public class CommuneController {
 
     @GetMapping("/list")
     public List<Commune> getAllCommunes() {
-        return communeService.findAll();
+        return communeService.getAllCommunes();
     }
 
-    @GetMapping("/{id}")
+    /*@GetMapping("/{id}")
     public Optional<Commune> getCommuneById(@PathVariable Integer id) {
-        return communeService.findById(id);
-    }
+        return communeService.getCommune(id);
+    }*/
 
     @PostMapping("/add")
     public Commune createCommune(@RequestBody Commune commune) {
-        return communeService.save(commune);
+        return communeService.createCommune(commune);
     }
 
     @PutMapping("/{id}")
     public Commune updateCommune(@PathVariable Integer id, @RequestBody Commune commune) {
         //commune.setIdCommune(id);
-        return communeService.save(commune);
+        return communeService.updateCommune(id,commune);
     }
 
     @DeleteMapping("/{id}")
     public void deleteCommune(@PathVariable Integer id) {
-        communeService.deleteById(id);
+        communeService.deleteCommune(id);
     }
 }
 

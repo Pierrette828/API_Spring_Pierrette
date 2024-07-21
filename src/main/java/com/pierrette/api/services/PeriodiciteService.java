@@ -1,6 +1,8 @@
 package com.pierrette.api.services;
 
+import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.entities.Periodicite;
+import com.pierrette.api.repositories.OperateurRepo;
 import com.pierrette.api.repositories.PeriodiciteRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,19 +15,34 @@ public class PeriodiciteService {
     @Autowired
     private PeriodiciteRepo periodiciteRepository;
 
-    public List<Periodicite> findAll() {
+
+    public List<Periodicite> getAllPeriodicites(){
         return periodiciteRepository.findAll();
     }
 
-    public Optional<Periodicite> findById(Integer id) {
-        return periodiciteRepository.findById(id);
-    }
-
-    public Periodicite save(Periodicite periodicite) {
+    public Periodicite createPeriodicite(Periodicite periodicite){
         return periodiciteRepository.save(periodicite);
     }
 
-    public void deleteById(Integer id) {
-        periodiciteRepository.deleteById(id);
+    public Periodicite updatePeriodicite(Integer id, Periodicite periodiciteUpdate){
+        Periodicite periodiciteExiste = periodiciteRepository.findById(id).orElse(null);
+        if (periodiciteExiste!=null){
+            periodiciteExiste.setLibelleValidite(periodiciteUpdate.getLibelleValidite());
+
+          Periodicite periodiciteAjour = periodiciteRepository.save(periodiciteExiste);
+
+        } return periodiciteExiste;
+    }
+
+    public String deletePeriodicite(Integer id) {
+        if(id!=0){
+            periodiciteRepository.deleteById(id);
+            return "Suppression";
+        }
+        return null;
+    }
+
+    public Periodicite getPeriodicite(Integer idPeriodicite){
+        return periodiciteRepository.findById(idPeriodicite).get();
     }
 }
