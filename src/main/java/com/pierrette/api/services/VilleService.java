@@ -2,6 +2,7 @@ package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.VilleRepo;
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +38,15 @@ public class VilleService {
         villeExist.setLibelleVille(ville.getLibelleVille());
 
         return villeRepository.save(villeExist);
+    }
+
+    @PostConstruct
+    public void init() {
+        if (villeRepository.count() != 0) {
+            Ville ville = new Ville();
+            ville.setLibelleVille("Paris");
+            villeRepository.save(ville);
+        }
     }
 
     public void deleteById(Integer id) {

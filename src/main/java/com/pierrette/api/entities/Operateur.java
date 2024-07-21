@@ -25,6 +25,8 @@ public class Operateur {
     @Column(nullable = true)
     private Byte piece_identite;
 
+    private String role; // je veux avoir le type de l'operateur ici (sous forme de role operateur)
+
     @ManyToOne
     @JoinColumn(name = "idType_operateur")
     private Type_operateur typeOperateur;
@@ -35,6 +37,11 @@ public class Operateur {
     @OneToOne
     @JoinColumn(name = "idTerminal")
     private Terminal terminal;
+
+
+
+    public Operateur(String nom, String password, Type_operateur typeOperateur) {
+    }
 
     public Integer getIdOperateur() {
         return idOperateur;
