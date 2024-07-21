@@ -18,28 +18,28 @@ public class OperateurController {
 
     @GetMapping
     public List<Operateur> getAllOperateurs() {
-        return operateurService.findAll();
+        return operateurService.getAllOperateurs();
     }
 
     @GetMapping("/{id}")
     public Optional<Operateur> getOperateurById(@PathVariable Integer id) {
-        return operateurService.findById(id);
+        return Optional.ofNullable(operateurService.getOperateur(id));
     }
 
     @PostMapping
     public Operateur createOperateur(@RequestBody Operateur operateur) {
-        return operateurService.save(operateur);
+        return operateurService.createOperateur(operateur);
     }
 
     @PutMapping("/{id}")
     public Operateur updateOperateur(@PathVariable Integer id, @RequestBody Operateur operateur) {
        // operateur.setIdOperateur(id);
-        return operateurService.save(operateur);
+        return operateurService.createOperateur(operateur);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOperateur(@PathVariable Integer id) {
-        operateurService.deleteById(id);
+        operateurService.deleteOperateur(id);
         return ResponseEntity.ok("Operateur deleted");
     }
 }
