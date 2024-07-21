@@ -1,10 +1,7 @@
 package com.pierrette.api.controllers;
 
-import com.pierrette.api.entities.Taxe;
 import com.pierrette.api.entities.Terminal;
-import com.pierrette.api.services.TaxeService;
 import com.pierrette.api.services.TerminalService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +12,21 @@ import java.util.Optional;
 @RequestMapping("/api/terminal")
 public class TerminalController {
 
-    @Autowired
-    private TerminalService terminalService;
+    private final TerminalService terminalService;
+
+    public TerminalController(TerminalService terminalService) {
+        this.terminalService = terminalService;
+    }
 
     @GetMapping
     public List<Terminal> getAllTerminals() {
         return terminalService.getAllTerminals();
     }
 
-   /* @GetMapping("/{idTerminal}")
+    @GetMapping("/{id}")
     public Optional<Terminal> getTerminalById(@PathVariable Integer id) {
-        return terminalService.findById(id);
-    }*/
+        return terminalService.getTerminal(id);
+    }
 
     @PostMapping("/create")
     public Terminal createTerminal(@RequestBody Terminal terminal) {
@@ -35,7 +35,6 @@ public class TerminalController {
 
     @PutMapping("/{id}")
     public Terminal updateTerminal(@PathVariable Integer id, @RequestBody Terminal terminal) {
-        // terminal.setIdTerminal(id);
         return terminalService.updateTerminal(id,terminal);
     }
 

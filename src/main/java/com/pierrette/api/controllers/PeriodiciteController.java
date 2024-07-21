@@ -2,7 +2,6 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Periodicite;
 import com.pierrette.api.services.PeriodiciteService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,18 +12,21 @@ import java.util.Optional;
 @RequestMapping("/api/periodicite")
 public class PeriodiciteController {
 
-    @Autowired
-    private PeriodiciteService periodiciteService;
+    private final PeriodiciteService periodiciteService;
+
+    public PeriodiciteController(PeriodiciteService periodiciteService) {
+        this.periodiciteService = periodiciteService;
+    }
 
     @GetMapping
     public List<Periodicite> getAllPeriodicites() {
         return periodiciteService.getAllPeriodicites();
     }
 
-    /*@GetMapping("/{id}")
+    @GetMapping("/{id}")
     public Optional<Periodicite> getPeriodiciteById(@PathVariable Integer id) {
-        return periodiciteService.findById(id);
-    }*/
+        return periodiciteService.getPeriodicite(id);
+    } 
 
     @PostMapping("/create")
     public Periodicite createPeriodicite(@RequestBody Periodicite periodicite) {

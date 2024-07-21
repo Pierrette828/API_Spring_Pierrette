@@ -2,7 +2,6 @@ package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.VilleRepo;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +11,11 @@ import java.util.Optional;
 @Service
 public class VilleService {
 
-    @Autowired
-    private VilleRepo villeRepository;
+    private final VilleRepo villeRepository;
+
+    public VilleService(VilleRepo villeRepository) {
+        this.villeRepository = villeRepository;
+    }
 
     public List<Ville> findAll() {
         return villeRepository.findAll();
@@ -36,6 +38,7 @@ public class VilleService {
 
         return villeRepository.save(villeExist);
     }
+
     public void deleteById(Integer id) {
         villeRepository.deleteById(id);
     }

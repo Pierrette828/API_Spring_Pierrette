@@ -1,11 +1,7 @@
 package com.pierrette.api.controllers;
 
-import com.pierrette.api.entities.Taxe;
 import com.pierrette.api.entities.Type_operateur;
-import com.pierrette.api.entities.Type_operateur;
-import com.pierrette.api.services.TaxeService;
 import com.pierrette.api.services.TypeOperateurService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +12,21 @@ import java.util.Optional;
 @RequestMapping("/api/typeoperateur")
 public class TypeOperateurController {
 
-    @Autowired
-    private TypeOperateurService typeOperateurService;
+    private final TypeOperateurService typeOperateurService;
+
+    public TypeOperateurController(TypeOperateurService typeOperateurService) {
+        this.typeOperateurService = typeOperateurService;
+    }
 
     @GetMapping
     public List<Type_operateur> getAllTypeOperateurs() {
         return typeOperateurService.getAllTypeOperateurs();
     }
 
-   /* @GetMapping("/{idTypeOperateur}")
-    public Optional<TypeOperateur> getTypeOperateurById(@PathVariable Integer id) {
-        return TypeOperateurService.findById(id);
-    }*/
+    @GetMapping("/{id}")
+    public Optional<Type_operateur> getTypeOperateurById(@PathVariable Integer id) {
+        return typeOperateurService.getTypeOperateur(id);
+    }
 
     @PostMapping("/create")
     public Type_operateur createTypeOperateur(@RequestBody Type_operateur typeOperateur) {
