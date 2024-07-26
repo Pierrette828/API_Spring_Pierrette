@@ -5,5 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface OperateurRepo extends JpaRepository<Operateur, Integer> {
-    public Operateur findByNom(String nom);
+     Operateur findByUsername(String username);
+
 }

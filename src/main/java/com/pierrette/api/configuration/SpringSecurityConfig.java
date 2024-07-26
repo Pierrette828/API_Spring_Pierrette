@@ -1,52 +1,60 @@
 package com.pierrette.api.configuration;
 
 import com.pierrette.api.enumeration.Role;
+import com.pierrette.api.services.CustomUserDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
 public class SpringSecurityConfig {
 
     private final CustomUserDetailService customUserDetailService;
-
-    public SpringSecurityConfig(CustomUserDetailService customUserDetailService) {
-        this.customUserDetailService = customUserDetailService;
-    }
+    private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests(auth->{
-            auth.requestMatchers("/api/communes", "/admin").hasRole( Role.Operateur_formel.name());
-            auth.requestMatchers("/user").hasAnyRole("USER", "ADMIN");
+            auth.requestMatchers(antMatcher("/error")).permitAll();
+            auth.requestMatchers(antMatcher("/docs")).permitAll();
+            auth.requestMatchers(antMatcher("/configuration/ui")).permitAll();
+            auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
+            auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();
+            auth.requestMatchers(antMatcher("/swagger-ui/index.html")).permitAll();
+            auth.requestMatchers(antMatcher("/api/v1/auth/*")).permitAll();
+            auth.requestMatchers(antMatcher("/api/v1/auth/sign-up")).permitAll();
+            auth.requestMatchers("/user").hasRole( Role.Operateur_formel.name());
+            auth.requestMatchers( "/user").hasRole( Role.Operateur_informel.name());
+            auth.requestMatchers("/admin").hasRole(Role.Administrateur.name());
             auth.anyRequest().authenticated();
-        }).formLogin(Customizer.withDefaults()).build();
+        }).sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+         .build();
     }
+
     @Bean
-    public UserDetailsService userDetailsService() {
-        UserDetails user = User.builder()
-                .username("user")
-                .password(bCryptPasswordEncoder().encode("user"))
-                .roles("USER")
-                .build();
-        UserDetails admin = User.builder()
-                .username("admin")
-                .password(bCryptPasswordEncoder().encode("admin"))
-                .roles("USER","ADMIN")
-                .build();
-        return new InMemoryUserDetailsManager(user, admin);
+    public AuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
+        daoAuthenticationProvider.setUserDetailsService(customUserDetailService);
+        daoAuthenticationProvider.setPasswordEncoder(bCryptPasswordEncoder());
+
+        return daoAuthenticationProvider;
     }
+
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
