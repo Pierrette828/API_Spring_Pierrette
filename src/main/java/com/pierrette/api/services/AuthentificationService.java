@@ -3,6 +3,7 @@ package com.pierrette.api.services;
 import com.pierrette.api.configuration.JwtService;
 import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.enumeration.Role;
+import com.pierrette.api.exception.AppException;
 import com.pierrette.api.repositories.OperateurRepo;
 import com.pierrette.api.requests.LoginRequest;
 import com.pierrette.api.requests.SignUp;
@@ -36,7 +37,7 @@ public class AuthentificationService {
     public String signUp (SignUp dto){
         Operateur operateur= operateurRepo.findByUsername(dto.getUsername());
         if(operateur!=null){
-            throw new IllegalArgumentException("Choisissez un autre username");
+            throw new AppException("Choisissez un autre username");
         } else{
             Operateur operator = new Operateur();
             operator.setUsername(dto.getUsername());
