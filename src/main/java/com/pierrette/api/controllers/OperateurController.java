@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/operateurs")
+@RequestMapping("/api/v1/auth/operateur")
 public class OperateurController {
 
     private final OperateurService operateurService;
@@ -18,17 +18,17 @@ public class OperateurController {
         this.operateurService = operateurService;
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Operateur> getAllOperateurs() {
         return operateurService.getAllOperateurs();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get/{id}")
     public Optional<Operateur> getOperateurById(@PathVariable Integer id) {
         return operateurService.getOperateur(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Operateur createOperateur(@RequestBody Operateur operateur) {
         return operateurService.createOperateur(operateur);
     }

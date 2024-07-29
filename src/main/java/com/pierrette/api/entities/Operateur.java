@@ -36,9 +36,7 @@ public class Operateur implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "idType_operateur")
-    private Type_operateur typeOperateur;
+
 
     @OneToMany(mappedBy = "operateur")
     private List<Paiement> paiements;
