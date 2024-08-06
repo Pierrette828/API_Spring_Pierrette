@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/contribuable")
+@RequestMapping("/api/v1/auth/contribuable")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
 public class ContribuableController {
 
     private final ContribuableService contribuableService;

@@ -35,9 +35,6 @@ public class Operateur implements UserDetails {
     private String piece_identite;
     @Enumerated(EnumType.STRING)
     private Role role;
-
-
-
     @OneToMany(mappedBy = "operateur")
     private List<Paiement> paiements;
 
@@ -45,18 +42,12 @@ public class Operateur implements UserDetails {
     @JoinColumn(name = "idTerminal")
     private Terminal terminal;
 
-    public Operateur(String nom, String password, Type_operateur typeOperateur) {
-    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ROLE_"+role));
         return authorities;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
     }
 }

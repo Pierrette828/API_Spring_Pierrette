@@ -2,6 +2,7 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Ville;
 import com.pierrette.api.services.VilleService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/villes")
+@RequiredArgsConstructor
+@RequestMapping("/api/v1/auth/villes")
 public class VilleController {
 
-    @Autowired
-    private VilleService villeService;
+    private final VilleService villeService;
 
     @GetMapping
     public List<Ville> getAllVilles() {
-        return villeService.findAll();
+        return villeService.getAll();
     }
 
     @GetMapping("/{id}")

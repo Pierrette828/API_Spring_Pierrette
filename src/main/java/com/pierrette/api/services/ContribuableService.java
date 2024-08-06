@@ -15,7 +15,6 @@ public class ContribuableService {
         this.contribuableRepository = contribuableRepository;
     }
 
-
     public List<Contribuable> getAllContribuable() {
         return contribuableRepository.findAll();
     }
