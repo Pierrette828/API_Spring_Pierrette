@@ -20,14 +20,6 @@ public class Ville {
     private Integer idVille;
     private String libelleVille;
 
-    @OneToMany(mappedBy ="ville")
-    private List<Prefecture> prefectures;
-
-    public String getLibelleVille() {
-        return libelleVille;
-    }
-
-    public void setLibelleVille(String libelleVille) {
-        this.libelleVille = libelleVille;
-    }
+//    @OneToMany(mappedBy ="ville")
+//    private List<Prefecture> prefectures;
 }
