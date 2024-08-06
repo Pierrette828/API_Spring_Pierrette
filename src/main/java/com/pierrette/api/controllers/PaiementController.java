@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/paiement")
+@RequestMapping("/api/v1/auth/paiement")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
 public class PaiementController {
 
 

@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/terminal")
+@RequestMapping("/api/v1/auth/terminal")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
 public class TerminalController {
 
     private final TerminalService terminalService;
