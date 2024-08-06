@@ -18,7 +18,7 @@ public class VilleService {
         this.villeRepository = villeRepository;
     }
 
-    public List<Ville> findAll() {
+    public List<Ville> getAll() {
         return villeRepository.findAll();
     }
 
