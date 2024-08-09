@@ -45,4 +45,10 @@ public class ContribuableService {
     public Contribuable getContribuable(Integer idContribuable) {
         return contribuableRepository.findById(idContribuable).orElse(null);
     }
+
+    public Integer countContribuable(){
+
+    List<Contribuable> contribuableList=  getAllContribuable();
+        return contribuableList.size();
+    }
 }

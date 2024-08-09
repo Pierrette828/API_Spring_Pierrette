@@ -18,7 +18,7 @@ public class ContribuableController {
         this.contribuableService = contribuableService;
     }
 
-    @GetMapping
+    @GetMapping("/list")
     public List<Contribuable> getAllOContribuables() {
         return contribuableService.getAllContribuable();
     }
@@ -28,20 +28,24 @@ public class ContribuableController {
         return contribuableService.getContribuable(id);
     }
 
-    @PostMapping("/create")
+    @PostMapping("/save")
     public Contribuable createContribuable(@RequestBody Contribuable contribuable) {
         return contribuableService.createContribuable(contribuable);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/update/{id}")
     public Contribuable updateContribuable(@PathVariable Integer id, @RequestBody Contribuable contribuable) {
 
         return contribuableService.updateContribuable(id, contribuable);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteContribuable(@PathVariable Integer id) {
         contribuableService.deleteContribuable(id);
         return ResponseEntity.ok("Contribuable avec l'ID " + id + " a été supprimé avec succès");
     }
+    @GetMapping("/count")
+     public int countContribuable() {
+        return contribuableService.countContribuable();
+     }
 }

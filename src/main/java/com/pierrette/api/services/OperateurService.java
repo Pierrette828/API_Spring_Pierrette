@@ -1,6 +1,7 @@
 package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Operateur;
+import com.pierrette.api.exception.AppException;
 import com.pierrette.api.repositories.OperateurRepo;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,9 @@ public class OperateurService {
     }
 
     public Operateur createOperateur(Operateur operateur) {
+        if(operateurRepository.existsByUsername(operateur.getUsername())){
+            throw new AppException("L'operateur en question existe deja");
+        }
         return operateurRepository.save(operateur);
     }
 
@@ -45,6 +49,10 @@ public class OperateurService {
 
     public Optional<Operateur> getOperateur(Integer id) {
         return operateurRepository.findById(id);
+    }
+
+    public Integer getOperateurs(){
+        return operateurRepository.countOperateur();
     }
 
 }

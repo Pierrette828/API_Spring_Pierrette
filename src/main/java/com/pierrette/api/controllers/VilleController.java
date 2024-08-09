@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/auth/villes")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
 public class VilleController {
 
     private final VilleService villeService;
