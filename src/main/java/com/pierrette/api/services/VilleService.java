@@ -43,9 +43,10 @@ public class VilleService {
     @PostConstruct
     public void init() {
         if (villeRepository.count() != 0) {
-            Ville ville = new Ville();
-            ville.setLibelleVille("Paris");
-            villeRepository.save(ville);
+//            Ville ville = new Ville();
+//            ville.setLibelleVille("Paris");
+//            villeRepository.save(ville);
+            System.out.println("Ville exist");
         }
     }
 

@@ -44,4 +44,8 @@ public class ContribuableController {
         contribuableService.deleteContribuable(id);
         return ResponseEntity.ok("Contribuable avec l'ID " + id + " a été supprimé avec succès");
     }
+    @GetMapping("/count")
+     public int countContribuable() {
+        return contribuableService.countContribuable();
+     }
 }
