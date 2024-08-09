@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/auth/operateur")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
 public class OperateurController {
 
     private final OperateurService operateurService;

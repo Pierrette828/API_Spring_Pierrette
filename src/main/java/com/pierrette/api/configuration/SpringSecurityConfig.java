@@ -38,6 +38,12 @@ public class SpringSecurityConfig {
                     auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/index.html")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/list")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/save")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/paiement/create")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/taxe/create")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/periodicite/create")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/communes/add")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/*")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/sign-up")).permitAll();
                     auth.requestMatchers("/user").hasRole(Role.Operateur_formel.name());
