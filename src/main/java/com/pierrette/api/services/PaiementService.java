@@ -1,28 +1,40 @@
 package com.pierrette.api.services;
 
+import com.pierrette.api.entities.Operateur;
 import com.pierrette.api.entities.Paiement;
+import com.pierrette.api.entities.Periodicite;
+import com.pierrette.api.repositories.OperateurRepo;
 import com.pierrette.api.repositories.PaiementRepo;
+import com.pierrette.api.repositories.PeriodiciteRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Service
 public class PaiementService {
 
     private final PaiementRepo paiementRepository;
+    private final OperateurRepo operateurRepository;
+    private final PeriodiciteRepo periodiciteRepository;
 
-    public PaiementService(PaiementRepo paiementRepository) {
-        this.paiementRepository = paiementRepository;
-    }
 
     public List<Paiement> getAllPaiements() {
         return paiementRepository.findAll();
     }
 
     public Paiement createPaiement(Paiement paiement) {
+//        Operateur operateur = operateurRepository.findById(paiement.getOperateur().getIdOperateur())
+//                .orElseThrow(() -> new IllegalArgumentException("Opérateur non trouvé"));
+        Operateur operateur = operateurRepository.findByUsername(paiement.getOperateur().getUsername()) ;
+        Periodicite periodicite = periodiciteRepository.findById(paiement.getPeriodicite().getIdValidite())
+                .orElseThrow(() -> new IllegalArgumentException("Periodicité non trouvé"));
+        // Associe l'opérateur au paiement
+        paiement.setOperateur(operateur);
+        paiement.setPeriodicite(periodicite);
         return paiementRepository.save(paiement);
     }
 

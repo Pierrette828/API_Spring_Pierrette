@@ -32,10 +32,10 @@ public class SpringSecurityConfig {
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers(antMatcher("/error")).permitAll();
                     auth.requestMatchers(antMatcher("/docs")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/operateurs/list")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/operateur/*")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/paiement/*")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/*")).permitAll();
+//                    auth.requestMatchers(antMatcher("/api/operateurs/list")).permitAll();
+//                    auth.requestMatchers(antMatcher("/api/v1/auth/operateur/*")).permitAll();
+//                    auth.requestMatchers(antMatcher("/api/v1/auth/paiement/*")).permitAll();
+//                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/*")).permitAll();
                     auth.requestMatchers(antMatcher("/configuration/ui")).permitAll();
                     auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();
