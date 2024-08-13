@@ -2,6 +2,7 @@ package com.pierrette.api.controllers;
 
 import com.pierrette.api.entities.Paiement;
 import com.pierrette.api.services.PaiementService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth/paiement")
 @CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
@@ -17,10 +18,6 @@ public class PaiementController {
 
 
     private final PaiementService paiementService;
-
-    public PaiementController(PaiementService paiementService) {
-        this.paiementService = paiementService;
-    }
 
     @GetMapping
     public List<Paiement> getAllPaiements() {

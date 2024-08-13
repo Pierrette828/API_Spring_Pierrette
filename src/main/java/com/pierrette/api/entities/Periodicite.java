@@ -24,11 +24,4 @@ public class Periodicite {
     @OneToMany(mappedBy = "periodicite")
     private List<Paiement> paiements;
 
-    public String getLibelleValidite() {
-        return libelleValidite;
-    }
-
-    public void setLibelleValidite(String libelleValidite) {
-        this.libelleValidite = libelleValidite;
-    }
 }
