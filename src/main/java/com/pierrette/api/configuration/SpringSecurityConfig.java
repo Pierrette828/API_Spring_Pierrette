@@ -32,20 +32,21 @@ public class SpringSecurityConfig {
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers(antMatcher("/error")).permitAll();
                     auth.requestMatchers(antMatcher("/docs")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/operateurs/list")).permitAll();
+
+                    auth.requestMatchers(antMatcher("/api/v1/auth/operateur/list")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/operateur/create")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/add")).permitAll();
+
+                    auth.requestMatchers(antMatcher("/api/v1/auth/**")).permitAll();
+
+
                     auth.requestMatchers(antMatcher("/configuration/ui")).permitAll();
                     auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/index.html")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/list")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/save")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/paiement/create")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/taxe/create")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/periodicite/create")).permitAll();
-                    auth.requestMatchers(antMatcher("/api/v1/auth/communes/add")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/*")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/sign-up")).permitAll();
+                    auth.requestMatchers(antMatcher("/api/v1/auth/sign-in")).permitAll();
                     auth.requestMatchers("/user").hasRole(Role.Operateur_formel.name());
                     auth.requestMatchers("/user").hasRole(Role.Operateur_informel.name());
                     auth.requestMatchers("/admin").hasRole(Role.Administrateur.name());

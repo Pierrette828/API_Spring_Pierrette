@@ -2,11 +2,14 @@ package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Paiement;
 import com.pierrette.api.repositories.PaiementRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
+@RequiredArgsConstructor
 @Service
 public class PaiementService {
 
@@ -43,4 +46,31 @@ public class PaiementService {
         return paiementRepository.findById(idPaiement);
     }
 
+    public Long totalPaiements() {
+        return paiementRepository.totalAccount();
+    }
+
+    public Long totalPaie   mentsByDay() {
+        return paiementRepository.totAccountByDay();
+    }
+    public Long totalPaiementsByMonth() {
+        return paiementRepository.totAccountByMonth();
+    }
+
+    public Long totalPaiementsByWeek(Calendar calendar) {
+        // Set the calendar to the first day of the week (typically Sunday or Monday)
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+        Date startOfWeek = calendar.getTime();
+
+        // Move the calendar to the last day of the week
+        calendar.add(Calendar.DAY_OF_WEEK, 6);
+        Date endOfWeek = calendar.getTime();
+
+        // Convert the dates to SQL Date format
+        java.sql.Date sqlStartOfWeek = new java.sql.Date(startOfWeek.getTime());
+        java.sql.Date sqlEndOfWeek = new java.sql.Date(endOfWeek.getTime());
+
+        // Query the database to get the total payments for the week
+        return paiementRepository.totalAccountByWeek(sqlStartOfWeek, sqlEndOfWeek);
+    }
 }

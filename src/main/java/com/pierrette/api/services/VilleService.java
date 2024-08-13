@@ -1,5 +1,6 @@
 package com.pierrette.api.services;
 
+import com.pierrette.api.entities.Contribuable;
 import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.VilleRepo;
 import jakarta.annotation.PostConstruct;
@@ -43,10 +44,17 @@ public class VilleService {
     @PostConstruct
     public void init() {
         if (villeRepository.count() != 0) {
-            Ville ville = new Ville();
-            ville.setLibelleVille("Paris");
-            villeRepository.save(ville);
+//            Ville ville = new Ville();
+//            ville.setLibelleVille("Paris");
+//            villeRepository.save(ville);
+            System.out.println("Ville exist");
         }
+    }
+
+    public Integer countVille(){
+
+        List<Ville> villeList=  getAll();
+        return villeList.size();
     }
 
     public void deleteById(Integer id) {
