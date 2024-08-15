@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -32,8 +31,6 @@ public class SpringSecurityConfig {
         http.authorizeHttpRequests(auth -> {
                     auth.requestMatchers(antMatcher("/error")).permitAll();
                     auth.requestMatchers(antMatcher("/docs")).permitAll();
-<<<<<<< HEAD
-
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/list")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/create")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/add")).permitAll();
@@ -41,12 +38,7 @@ public class SpringSecurityConfig {
                     auth.requestMatchers(antMatcher("/api/v1/auth/**")).permitAll();
 
 
-=======
-//                    auth.requestMatchers(antMatcher("/api/operateurs/list")).permitAll();
-//                    auth.requestMatchers(antMatcher("/api/v1/auth/operateur/*")).permitAll();
-//                    auth.requestMatchers(antMatcher("/api/v1/auth/paiement/*")).permitAll();
-//                    auth.requestMatchers(antMatcher("/api/v1/auth/contribuable/*")).permitAll();
->>>>>>> 659e319d254b95a64eda10169643fcdbafc44e26
+
                     auth.requestMatchers(antMatcher("/configuration/ui")).permitAll();
                     auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();
@@ -65,7 +57,7 @@ public class SpringSecurityConfig {
         return http.csrf(csrf-> csrf.disable()).build();
 
     }
-
+    
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
