@@ -27,12 +27,12 @@ public class PaiementService {
     }
 
     public Paiement createPaiement(Paiement paiement) {
-//        Operateur operateur = operateurRepository.findById(paiement.getOperateur().getIdOperateur())
-//                .orElseThrow(() -> new IllegalArgumentException("Opérateur non trouvé"));
-        Operateur operateur = operateurRepository.findByUsername(paiement.getOperateur().getUsername()) ;
+        Operateur operateur = operateurRepository.findByUsername(paiement.getOperateur().getUsername());
+        if (operateur == null) {
+            throw new IllegalArgumentException("Operateur non trouvé avec son nom d'utilisateur");
+        }
         Periodicite periodicite = periodiciteRepository.findById(paiement.getPeriodicite().getIdValidite())
                 .orElseThrow(() -> new IllegalArgumentException("Periodicité non trouvé"));
-        // Associe l'opérateur au paiement
         paiement.setOperateur(operateur);
         paiement.setPeriodicite(periodicite);
         return paiementRepository.save(paiement);
@@ -53,6 +53,10 @@ public class PaiementService {
         }
     }
 
+
+    public void insertPaiement(Integer montant, Integer idOperateur, Integer idPeriodicite) {
+        paiementRepository.insertion( montant, idOperateur, idPeriodicite);
+    }
     public Optional<Paiement> getPaiement(Integer idPaiement) {
         return paiementRepository.findById(idPaiement);
     }
@@ -83,4 +87,6 @@ public class PaiementService {
         // Query the database to get the total payments for the week
         return paiementRepository.totalAccountByWeek(sqlStartOfWeek, sqlEndOfWeek);
     }
+
+
 }
