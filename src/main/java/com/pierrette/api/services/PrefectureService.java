@@ -1,6 +1,7 @@
 package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Prefecture;
+import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.PrefectureRepo;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,12 @@ public class PrefectureService {
 
     public Optional<Prefecture> getPrefecture(Integer idPrefecture) {
         return prefectureRepository.findById(idPrefecture);
+    }
+
+    public Integer countPrefecture(){
+
+        List<Prefecture> prefectureList=  getAllPrefectures();
+        return prefectureList.size();
     }
 
 }

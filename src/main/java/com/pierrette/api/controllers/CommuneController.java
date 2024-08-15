@@ -37,6 +37,11 @@ public class CommuneController {
         return communeService.updateCommune(id, commune);
     }
 
+    @GetMapping("/count")
+    public int countCommune() {
+        return communeService.countCommune();
+    }
+
     @DeleteMapping("/{id}")
     public void deleteCommune(@PathVariable Integer id) {
         communeService.deleteCommune(id);

@@ -1,6 +1,7 @@
 package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Commune;
+import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.CommuneRepo;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,12 @@ public class CommuneService {
         if (id != 0) {
             communeRepository.deleteById(id);
         }
+    }
+
+    public Integer countCommune(){
+
+        List<Commune> communeList=  getAllCommunes();
+        return communeList.size();
     }
 
     public Commune getCommune(Integer idCommune) {

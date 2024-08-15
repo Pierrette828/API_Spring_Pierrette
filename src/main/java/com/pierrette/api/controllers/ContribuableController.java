@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/auth/contribuable")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:50085/"})
 public class ContribuableController {
 
     private final ContribuableService contribuableService;
@@ -44,6 +44,7 @@ public class ContribuableController {
         contribuableService.deleteContribuable(id);
         return ResponseEntity.ok("Contribuable avec l'ID " + id + " a été supprimé avec succès");
     }
+
     @GetMapping("/count")
      public int countContribuable() {
         return contribuableService.countContribuable();

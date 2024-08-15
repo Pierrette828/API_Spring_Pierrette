@@ -1,4 +1,5 @@
 package com.pierrette.api.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +18,7 @@ import java.util.Set;
 public class Contribuable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idContribuable;;
+    private Integer idContribuable;
     private String nom;
     private String prenom;
     private String adresse;
@@ -29,5 +30,6 @@ public class Contribuable {
             joinColumns = @JoinColumn(name = "idContribuable"),
             inverseJoinColumns = @JoinColumn(name = "idTaxe")
     )
+    //@JsonIgnore
     private Set<Taxe> taxes=new HashSet<>();
 }
