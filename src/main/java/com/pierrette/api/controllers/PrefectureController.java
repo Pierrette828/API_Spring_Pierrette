@@ -29,6 +29,11 @@ public class PrefectureController {
         return prefectureService.getPrefecture(id);
     }
 
+    @GetMapping("/count")
+    public int countPrefecture() {
+        return prefectureService.countPrefecture();
+    }
+
     @PostMapping("/create")
     public Prefecture createPrefecture(@RequestBody Prefecture prefecture) {
         return prefectureService.createPrefecture(prefecture);

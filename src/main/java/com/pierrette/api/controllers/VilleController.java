@@ -38,6 +38,11 @@ public class VilleController {
         return villeService.update(id,ville);
     }
 
+    @GetMapping("/count")
+    public int countVille() {
+        return villeService.countVille();
+    }
+
     @DeleteMapping("/{id}")
     public void deleteVille(@PathVariable Integer id) {
         villeService.deleteById(id);

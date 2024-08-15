@@ -1,8 +1,8 @@
 package com.pierrette.api.entities;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,10 @@ public class Paiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idPaiement;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date datePaiement;
+
     private Integer montant;
 
     @ManyToOne
@@ -36,5 +39,9 @@ public class Paiement {
 
     @ManyToMany(mappedBy = "paiements1")
     private Set<Taxe> taxes = new HashSet<>();
-}
 
+    @PrePersist
+    protected void onCreate() {
+        this.datePaiement = new Date();
+    }
+}
