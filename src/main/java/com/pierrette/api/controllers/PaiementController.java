@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
@@ -32,14 +33,25 @@ public class PaiementController {
     }
 
     @PostMapping("/create")
-    public Paiement createPaiement(@RequestBody Paiement paiement) {
-        return paiementService.createPaiement(paiement);
+    public ResponseEntity<Paiement> createPaiement(@RequestBody Paiement paiement) {
+        return new ResponseEntity<>(paiementService.createPaiement(paiement), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public Paiement updatePaiement(@PathVariable Integer id, @RequestBody Paiement paiement) {
 
         return paiementService.updatePaiement(id, paiement);
+    }
+
+    // succes modification gold
+    @PostMapping("/insertion")
+    public ResponseEntity<String> insertPaiement(
+            @RequestParam("montant") Integer montant,
+            @RequestParam("idOperateur") Integer idOperateur,
+            @RequestParam("idPeriodicite") Integer idPeriodicite) {
+
+        paiementService.insertPaiement(montant, idOperateur, idPeriodicite);
+        return new ResponseEntity<>("Paiement inséré avec succès", HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
