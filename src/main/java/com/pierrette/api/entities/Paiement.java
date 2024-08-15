@@ -1,5 +1,7 @@
 package com.pierrette.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,10 +29,12 @@ public class Paiement {
 
     @ManyToOne
     @JoinColumn(name = "idOperateur")
+    @JsonBackReference
     private Operateur operateur;
 
     @ManyToOne
     @JoinColumn(name = "idPeriodicite")
+    @JsonBackReference
     private Periodicite periodicite;
 
     @ManyToMany(mappedBy = "paiements1")
