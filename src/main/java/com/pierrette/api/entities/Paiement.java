@@ -1,5 +1,6 @@
 package com.pierrette.api.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,11 +34,8 @@ public class Paiement {
     @JoinColumn(name = "idPeriodicite")
     private Periodicite periodicite;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "paiements1")
     private Set<Taxe> taxes = new HashSet<>();
 
-    @PrePersist
-    protected void onCreate() {
-        this.datePaiement = new Date();
-    }
 }

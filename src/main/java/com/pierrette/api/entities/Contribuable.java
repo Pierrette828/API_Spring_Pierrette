@@ -30,6 +30,6 @@ public class Contribuable {
             joinColumns = @JoinColumn(name = "idContribuable"),
             inverseJoinColumns = @JoinColumn(name = "idTaxe")
     )
-    //@JsonIgnore
+    @JsonIgnore
     private Set<Taxe> taxes=new HashSet<>();
 }

@@ -53,7 +53,7 @@ public class PaiementController {
 
     @GetMapping("/total/day")
     public ResponseEntity<Long> getTotalPaiementsByDay() {
-        Long totalByDay = paiementService.totalPaiements();
+        Long totalByDay = paiementService.totalPaiementsByDay();
         return new ResponseEntity<>(totalByDay, HttpStatus.OK);
     }
 
