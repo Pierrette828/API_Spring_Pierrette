@@ -4,7 +4,9 @@ import com.pierrette.api.entities.Commune;
 import com.pierrette.api.services.CommuneService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/v1/auth/communes")
@@ -39,8 +41,17 @@ public class CommuneController {
 
     @GetMapping("/count")
     public int countCommune() {
-        return communeService.countCommune();
+        List<Commune> communes = communeService.getAllCommunes(); // Récupère toutes les communes
+        Set<String> uniqueCommunes = new HashSet<>();
+
+        for (Commune commune : communes) {
+            uniqueCommunes.add(commune.getLibelleCommune()); // Suppose que la méthode getNom() retourne le nom de la commune
+        }
+
+        return uniqueCommunes.size();
     }
+
+
 
     @DeleteMapping("/{id}")
     public void deleteCommune(@PathVariable Integer id) {

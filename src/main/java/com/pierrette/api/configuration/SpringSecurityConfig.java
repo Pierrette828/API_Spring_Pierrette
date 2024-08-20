@@ -34,11 +34,7 @@ public class SpringSecurityConfig {
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/list")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/create")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/auth/operateur/add")).permitAll();
-
                     auth.requestMatchers(antMatcher("/api/v1/auth/**")).permitAll();
-
-
-
                     auth.requestMatchers(antMatcher("/configuration/ui")).permitAll();
                     auth.requestMatchers(antMatcher("/v3/api-docs/**")).permitAll();
                     auth.requestMatchers(antMatcher("/swagger-ui/*")).permitAll();

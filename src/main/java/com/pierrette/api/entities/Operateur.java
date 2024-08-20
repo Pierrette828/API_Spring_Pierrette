@@ -32,7 +32,7 @@ public class Operateur implements UserDetails {
     private String sexe;
     private String password;
     @Column(nullable = true)
-    private String piece_identite;
+    private Byte piece_identite;
     @Enumerated(EnumType.STRING)
     private Role role;
     @OneToMany(mappedBy = "operateur")

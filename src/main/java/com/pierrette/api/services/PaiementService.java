@@ -71,21 +71,26 @@ public class PaiementService {
         return paiementRepository.totAccountByMonth();
     }
 
-    public Long totalPaiementsByWeek(Calendar calendar) {
-        // Set the calendar to the first day of the week (typically Sunday or Monday)
-        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
-        Date startOfWeek = calendar.getTime();
+//    public Long totalPaiementsByWeek(Calendar calendar) {
+//        // Set the calendar to the first day of the week (typically Sunday or Monday)
+//        calendar.set(Calendar.DAY_OF_WEEK, calendar.getFirstDayOfWeek());
+//        Date startOfWeek = calendar.getTime();
+//
+//        // Move the calendar to the last day of the week
+//        calendar.add(Calendar.DAY_OF_WEEK, 6);
+//        Date endOfWeek = calendar.getTime();
+//
+//        // Convert the dates to SQL Date format
+//        java.sql.Date sqlStartOfWeek = new java.sql.Date(startOfWeek.getTime());
+//        java.sql.Date sqlEndOfWeek = new java.sql.Date(endOfWeek.getTime());
+//
+//        // Query the database to get the total payments for the week
+//        return paiementRepository.totalAccountByWeek(sqlStartOfWeek, sqlEndOfWeek);
+//    }
 
-        // Move the calendar to the last day of the week
-        calendar.add(Calendar.DAY_OF_WEEK, 6);
-        Date endOfWeek = calendar.getTime();
 
-        // Convert the dates to SQL Date format
-        java.sql.Date sqlStartOfWeek = new java.sql.Date(startOfWeek.getTime());
-        java.sql.Date sqlEndOfWeek = new java.sql.Date(endOfWeek.getTime());
-
-        // Query the database to get the total payments for the week
-        return paiementRepository.totalAccountByWeek(sqlStartOfWeek, sqlEndOfWeek);
+    public Long getTotalAccountByWeek(Date startOfWeek, Date endOfWeek) {
+        return paiementRepository.totalAccountByWeek(startOfWeek, endOfWeek);
     }
 
 

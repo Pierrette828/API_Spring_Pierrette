@@ -3,6 +3,7 @@ package com.pierrette.api.controllers;
 import com.pierrette.api.entities.Paiement;
 import com.pierrette.api.services.PaiementService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -94,21 +95,34 @@ public class PaiementController {
         return new ResponseEntity<>(totalByMonth, HttpStatus.OK);
     }
 
-    @GetMapping("/total/week")
-    public ResponseEntity<Long> getTotalPaiementsByWeek(@RequestParam(value = "date", required = false) String dateString) {
-        Calendar calendar = Calendar.getInstance();
-        if (dateString != null) {
-            // Parse the date string if provided (assumed format: yyyy-MM-dd)
-            String[] parts = dateString.split("-");
-            int year = Integer.parseInt(parts[0]);
-            int month = Integer.parseInt(parts[1]) - 1; // Calendar months are 0-based
-            int day = Integer.parseInt(parts[2]);
-            calendar.set(year, month, day);
+//    @GetMapping("/total/week")
+//    public ResponseEntity<Long> getTotalPaiementsByWeek(@RequestParam(value = "date", required = false) String dateString) {
+//        Calendar calendar = Calendar.getInstance();
+//        if (dateString != null) {
+//            // Parse the date string if provided (assumed format: yyyy-MM-dd)
+//            String[] parts = dateString.split("-");
+//            int year = Integer.parseInt(parts[0]);
+//            int month = Integer.parseInt(parts[1]) - 1; // Calendar months are 0-based
+//            int day = Integer.parseInt(parts[2]);
+//            calendar.set(year, month, day);
+//        }
+//        Long totalByWeek = paiementService.totalPaiementsByWeek(calendar);
+//        if (totalByWeek == null){
+//            totalByWeek = 0L;
+//        }
+//        return new ResponseEntity<>(totalByWeek, HttpStatus.OK);
+//    }
+
+    @GetMapping("/total-by-week")
+    public ResponseEntity<Long> getTotalAccountByWeek(
+            @RequestParam("startOfWeek") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startOfWeek,
+            @RequestParam("endOfWeek") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endOfWeek) {
+
+        Long total = paiementService.getTotalAccountByWeek(startOfWeek, endOfWeek);
+        if (total ==null){
+            total = 0L;
         }
-        Long totalByWeek = paiementService.totalPaiementsByWeek(calendar);
-        if (totalByWeek == null){
-            totalByWeek = 0L;
-        }
-        return new ResponseEntity<>(totalByWeek, HttpStatus.OK);
+        return new ResponseEntity<>(total, HttpStatus.OK);
     }
 }
+
