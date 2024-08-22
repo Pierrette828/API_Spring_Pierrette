@@ -14,9 +14,9 @@ public class SignUp {
     private String username;
     private String nom;
     private String prenom;
-    private Integer telephone;
+    private String telephone;
     private String sexe;
     private String password;
-    private String piece_identite;
+    private int piece_identite;
     private String role;
 }

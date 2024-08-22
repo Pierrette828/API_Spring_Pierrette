@@ -9,6 +9,7 @@ import com.pierrette.api.requests.LoginRequest;
 import com.pierrette.api.requests.SignUp;
 import com.pierrette.api.response.AuthenficationResponse;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -44,6 +45,7 @@ public class AuthentificationService {
             operator.setNom(dto.getNom());
             operator.setPrenom(dto.getPrenom());
             operator.setSexe(dto.getSexe());
+            operator.setTelephone(dto.getTelephone());
             operator.setPiece_identite(dto.getPiece_identite());
             operator.setRole(Role.valueOf(dto.getRole()));
             operator.setPassword(bCryptPasswordEncoder.encode(dto.getPassword()));

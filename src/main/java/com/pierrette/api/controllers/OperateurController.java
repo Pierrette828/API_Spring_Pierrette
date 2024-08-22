@@ -13,13 +13,11 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/v1/auth/operateur")
-@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:58349"})
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost:50085"})
 public class OperateurController {
 
     private final OperateurService operateurService;
     private final AuthentificationService authentificationService;
-
-
 
     @GetMapping("/list")
     public List<Operateur> getAllOperateurs() {
