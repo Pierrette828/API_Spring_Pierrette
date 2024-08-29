@@ -6,7 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -36,12 +35,10 @@ public class Operateur implements UserDetails {
     private int piece_identite;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToMany(mappedBy = "operateur")
-    private List<Paiement> paiements;
 
-    @OneToOne
-    @JoinColumn(name = "idTerminal")
-    private Terminal terminal;
+    // @OneToOne
+    // @JoinColumn(name = "idTerminal")
+    // private Terminal terminal;
 
 
     @Override

@@ -1,13 +1,19 @@
 package com.pierrette.api.entities;
-import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.util.Set;
-import java.util.HashSet;
 
 @Entity
 @AllArgsConstructor
@@ -20,32 +26,14 @@ public class Commune {
     private Integer idCommune;
     private String libelleCommune;
     private String libellePrefecture;
-
-    @ManyToOne
-    @JoinColumn(name = "idPrefecture")
+    
+    @OneToOne
+    @JoinColumn(name = "idPrefecture", nullable = true)
     private Prefecture prefecture;
 
-    @ManyToMany(mappedBy = "communes")
-    private Set<Taxe> taxes= new HashSet<>();
+    // @ManyToOne
+    // @JoinColumn(name = "idPrefecture")
+    // private Prefecture prefecture;
 
-
-    public void setLibelleCommune(String libelleCommune) {
-        this.libelleCommune = libelleCommune;
-    }
-
-    public void setLibellePrefecture(String libellePrefecture) {
-        this.libellePrefecture = libellePrefecture;
-    }
-
-    public String getLibelleCommune() {
-        return libelleCommune;
-    }
-
-    public String getLibellePrefecture() {
-        return libellePrefecture;
-    }
-
-    public void setPrefecture(Prefecture prefecture) {
-        this.prefecture = prefecture;
-    }
+    
 }

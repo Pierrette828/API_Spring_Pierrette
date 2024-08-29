@@ -9,7 +9,6 @@ import com.pierrette.api.requests.LoginRequest;
 import com.pierrette.api.requests.SignUp;
 import com.pierrette.api.response.AuthenficationResponse;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.type.descriptor.jdbc.SmallIntJdbcType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

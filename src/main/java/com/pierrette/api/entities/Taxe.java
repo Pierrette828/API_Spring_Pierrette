@@ -1,14 +1,18 @@
 package com.pierrette.api.entities;
-import jakarta.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -21,19 +25,8 @@ public class Taxe {
     private Integer idTaxe;
     private String libelleTaxe;
 
-    @ManyToMany
-    @JoinTable(
-            name = "taxe_commune",
-            joinColumns = @JoinColumn(name = "idTaxe"),
-            inverseJoinColumns = @JoinColumn(name = "idCommune")
-    )
-    private Set<Commune> communes= new HashSet<>();
-
-    @ManyToMany(mappedBy = "taxes")
-    private Set<Contribuable> contribuables= new HashSet<>();
-
-    @ManyToMany(mappedBy = "taxes")
-    private Set<Paiement> paiements= new HashSet<>();
+//     @ManyToMany(mappedBy = "taxes")
+//     private Set<Paiement> paiements= new HashSet<>();
 
     @ManyToMany
     @JoinTable(
@@ -41,13 +34,6 @@ public class Taxe {
             joinColumns = @JoinColumn(name = "idTaxe"),
             inverseJoinColumns = @JoinColumn(name = "idPaiement")
     )
-    private Set<Paiement> paiements1 = new HashSet<>();
+    private Set<Paiement> paiements1 = new HashSet<>();    
 
-    public String getLibelleTaxe() {
-        return libelleTaxe;
-    }
-
-    public void setLibelleTaxe(String libelleTaxe) {
-        this.libelleTaxe = libelleTaxe;
-    }
 }

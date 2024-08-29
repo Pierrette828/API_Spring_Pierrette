@@ -23,8 +23,4 @@ public class Type_operateur {
     private String operateur_formel;
     private String operateur_informel;
 
-//    @OneToMany(mappedBy ="typeOperateur")
-//    private List<Operateur> operateurs;
-
-
 }

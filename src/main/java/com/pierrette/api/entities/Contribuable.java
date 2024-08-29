@@ -28,8 +28,7 @@ public class Contribuable {
     @JoinTable(
             name = "contribuable_taxe",
             joinColumns = @JoinColumn(name = "idContribuable"),
-            inverseJoinColumns = @JoinColumn(name = "idTaxe")
-    )
+            inverseJoinColumns = @JoinColumn(name = "idTaxe"))
     @JsonIgnore
     private Set<Taxe> taxes=new HashSet<>();
 }

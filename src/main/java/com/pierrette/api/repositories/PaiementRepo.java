@@ -15,8 +15,8 @@ public interface PaiementRepo extends JpaRepository<Paiement, Integer> {
     @Query(value = "select sum(montant) from paiement", nativeQuery = true)
     Long totalAccount();
 
-    @Query(value = "SELECT SUM(montant) FROM paiement WHERE date_paiement >= CURRENT_DATE AND date_paiement < CURRENT_DATE + INTERVAL '1 day'", nativeQuery = true)
-    Long totAccountByDay();
+    // @Query(value = "SELECT SUM(montant) FROM paiement WHERE date_paiement >= CURRENT_DATE AND date_paiement < CURRENT_DATE + INTERVAL '1 day'", nativeQuery = true)
+    // Long totAccountByDay();
 
     @Query(value = "SELECT SUM(montant) FROM paiement WHERE TO_CHAR(date_paiement, 'YYYYMM') = TO_CHAR(CURRENT_TIMESTAMP, 'YYYYMM')", nativeQuery = true)
     Long totAccountByMonth();

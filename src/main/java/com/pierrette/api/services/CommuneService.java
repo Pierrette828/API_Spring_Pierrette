@@ -1,8 +1,9 @@
 package com.pierrette.api.services;
 
 import com.pierrette.api.entities.Commune;
-import com.pierrette.api.entities.Ville;
 import com.pierrette.api.repositories.CommuneRepo;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @Service
 public class CommuneService {
 
-    private final CommuneRepo communeRepository;
+    @Autowired
+    private CommuneRepo communeRepository;
 
     public CommuneService(CommuneRepo communeRepository) {
         this.communeRepository = communeRepository;

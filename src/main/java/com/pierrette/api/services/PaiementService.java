@@ -64,9 +64,9 @@ public class PaiementService {
     public Long totalPaiements() {
         return paiementRepository.totalAccount();
     }
-    public Long totalPaiementsByDay() {
-        return paiementRepository.totAccountByDay();
-    }
+    // public Long totalPaiementsByDay() {
+    //     return paiementRepository.totAccountByDay();
+    // }
     public Long totalPaiementsByMonth() {
         return paiementRepository.totAccountByMonth();
     }

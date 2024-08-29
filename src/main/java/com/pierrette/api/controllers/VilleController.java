@@ -3,7 +3,6 @@ package com.pierrette.api.controllers;
 import com.pierrette.api.entities.Ville;
 import com.pierrette.api.services.VilleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +26,7 @@ public class VilleController {
         return villeService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/add")
     public Ville createVille(@RequestBody Ville ville) {
         return villeService.save(ville);
     }

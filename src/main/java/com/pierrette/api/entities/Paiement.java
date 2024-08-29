@@ -1,15 +1,24 @@
 package com.pierrette.api.entities;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @AllArgsConstructor
@@ -27,18 +36,12 @@ public class Paiement {
     private Integer montant;
 
     @ManyToOne
-    @JoinColumn(name = "idOperateur")
-    @JsonBackReference
     private Operateur operateur;
 
     @ManyToOne
     @JoinColumn(name = "idPeriodicite")
-    @JsonBackReference
     private Periodicite periodicite;
-
-    @ManyToMany(mappedBy = "paiements1")
-    private Set<Taxe> taxes = new HashSet<>();
-
+    
     @PrePersist
     protected void onCreate() {
         this.datePaiement = new Date();
