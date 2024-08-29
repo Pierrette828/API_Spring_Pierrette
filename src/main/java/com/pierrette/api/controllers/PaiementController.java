@@ -1,5 +1,6 @@
 package com.pierrette.api.controllers;
 
+import com.pierrette.api.entities.CreatePayement;
 import com.pierrette.api.entities.Paiement;
 import com.pierrette.api.services.PaiementService;
 import lombok.RequiredArgsConstructor;
@@ -33,10 +34,10 @@ public class PaiementController {
         return paiementService.getPaiement(id);
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<Paiement> createPaiement(@RequestBody Paiement paiement) {
-        return new ResponseEntity<>(paiementService.createPaiement(paiement), HttpStatus.CREATED);
-    }
+    // @PostMapping("/create")
+    // public ResponseEntity<Paiement> createPaiement(@RequestBody Paiement paiement) {
+    //     return new ResponseEntity<>(paiementService.createPaiement(paiement), HttpStatus.CREATED);
+    // }
 
     @PutMapping("/{id}")
     public Paiement updatePaiement(@PathVariable Integer id, @RequestBody Paiement paiement) {
@@ -45,13 +46,16 @@ public class PaiementController {
     }
 
     // succes modification gold
-    @PostMapping("/insertion")
+    @PostMapping("/create")
     public ResponseEntity<String> insertPaiement(
-            @RequestParam("montant") Integer montant,
-            @RequestParam("idOperateur") Integer idOperateur,
-            @RequestParam("idPeriodicite") Integer idPeriodicite) {
+            @RequestBody CreatePayement createPayement
+            // @RequestParam("montant") Integer montant,
+            // @RequestParam("idOperateur") Integer idOperateur,
+            // @RequestParam("idPeriodicite") Integer idPeriodicite
+            ) 
+            {
 
-        paiementService.insertPaiement(montant, idOperateur, idPeriodicite);
+        paiementService.insertPaiement(createPayement.getMontant(), createPayement.getIdOperateur(), createPayement.getIdPeriodicite());
         return new ResponseEntity<>("Paiement inséré avec succès", HttpStatus.CREATED);
     }
 
